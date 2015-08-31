@@ -21,7 +21,7 @@ class midonet::params {
         }
       }
 
-      # MidoNet API config
+      # MidoNet API config - Tomcat config for $::osfamily == 'RedHat'
       # ::midonet::midonet_api
       $tomcat_package  = 'tomcat'
       $catalina_base   = '/usr/share/tomcat'
@@ -61,13 +61,13 @@ class midonet::params {
         }
       }
 
-      # MidoNet API config
+      # MidoNet API config - Tomcat config for $::osfamily == 'Debian'
       # ::midonet::midonet_api
       $tomcat_package  = 'tomcat7'
       $catalina_base = '/var/lib/tomcat7'
       $augeas_packages = 'libaugeas-ruby'
 
-      # MidoNet repositories config for $::osfamily == 'Ubuntu'
+      # MidoNet repositories config for $::osfamily == 'Debian'
       # ::midonet::repository::ubuntu
       $midonet_repo            = 'http://repo.midonet.org/midonet/v2015.06'
       $midonet_thirdparty_repo = 'http://repo.midonet.org/misc'
@@ -124,7 +124,7 @@ class midonet::params {
 
     # Cassandra config
     # ::midonet::cassandra
-    $cassandra_seeds              = ['localhost']
+    $cassandra_seeds    = [ 'localhost', ]
     $seed_address       = 'localhost'
     $storage_port       = '7000'
     $ssl_storage_port   = '7001'
