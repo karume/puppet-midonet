@@ -94,14 +94,14 @@ class midonet::params {
     # MidoNet agent config
     # ::midonet::midonet_agent
     $zk_servers = [{
-      'ip'   => $::ipaddress,
+      'ip'   => 'localhost',
       'port' => '2181',
     },]
 
     # MidoNet ZooKeeper config
     # ::midonet::zookeeper
     $server_id = '1'
-    $client_ip = $::ipaddress_eth0
+    $client_ip = $::ipaddress
 
     # MidoNet API config
     # ::midonet::midonet_api
