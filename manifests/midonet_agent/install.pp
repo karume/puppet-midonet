@@ -24,12 +24,9 @@
 #
 class midonet::midonet_agent::install {
 
-  require midonet::repository
-
   if ! defined(Class['java']) {
     class { 'java':
       distribution => 'jre',
-      require      => Exec['update-midonet-repos']
     }
   }
 

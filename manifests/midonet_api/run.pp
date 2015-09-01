@@ -23,19 +23,19 @@
 # limitations under the License.
 #
 class midonet::midonet_api::run (
-  $zk_servers = $midonet::params::zk_servers,
-  $keystone_auth = $midonet::params::keystone_auth,
-  $vtep = $midonet::params::vtep,
-  $tomcat_package = $midonet::params::tomcat_package,
-  $api_ip = $midonet::params::midonet_api_ip,
-  $api_port = $midonet::params::midonet_api_port,
-  $keystone_host = $midonet::params::keystone_host,
-  $keystone_port = $midonet::params::keystone_port,
+  $zk_servers           = $midonet::params::zk_servers,
+  $keystone_auth        = $midonet::params::keystone_auth,
+  $vtep                 = $midonet::params::vtep,
+  $tomcat_package       = $midonet::params::tomcat_package,
+  $api_ip               = $midonet::params::midonet_api_ip,
+  $api_port             = $midonet::params::midonet_api_port,
+  $keystone_host        = $midonet::params::keystone_host,
+  $keystone_port        = $midonet::params::keystone_port,
   $keystone_admin_token = $midonet::params::keystone_admin_token,
   $keystone_tenant_name = $midonet::params::keystone_tenant_name,
-  $catalina_base = $midonet::params::catalina_base,
-  $bind_address = $midonet::params::bind_address
-) {
+  $catalina_base        = $midonet::params::catalina_base,
+  $bind_address         = $midonet::params::bind_address
+) inherits midonet::params {
 
   tomcat::instance{ 'midonet-api':
     package_name => $tomcat_package,
@@ -52,8 +52,8 @@ class midonet::midonet_api::run (
       'redirectPort'      => '8443',
       'maxHttpHeaderSize' => '65536'
     },
-#    require               => Tomcat::Instance['midonet-api'],
-#    notify                => Service[$tomcat_package]
+    require               => Tomcat::Instance['midonet-api'],
+    notify                => Service[$tomcat_package]
   }
 
   file { "/etc/${tomcat_package}/Catalina/localhost/midonet-api.xml":

@@ -105,11 +105,9 @@ class midonet::midonet_api(
   $api_port             = $midonet::params::api_port,
   $bind_address         = $midonet::params::bind_address,
   $catalina_base        = $midonet::params::catalina_base
-) {
+) inherits midonet::params {
 
-  include ::midonet::params
-
-  anchor { '::midonet::midonet_api::begin': } ->
+  anchor { 'midonet::midonet_api::begin': } ->
   class { '::midonet::midonet_api::augeas': } ->
   class { '::midonet::midonet_api::install': } ->
   class { '::midonet::midonet_api::run':
@@ -125,8 +123,8 @@ class midonet::midonet_api(
     keystone_tenant_name => $keystone_tenant_name,
     catalina_base        => $catalina_base,
     bind_address         => $bind_address
-  }
-  anchor { '::midonet::midonet_api::end': }
+  } ->
+  anchor { 'midonet::midonet_api::end': }
 
 }
 

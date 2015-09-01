@@ -66,18 +66,16 @@
 class midonet::midonet_agent(
   $zk_servers      = $midonet::params::zk_servers,
   $cassandra_seeds = $midonet::params::cassandra_seeds,
-) {
+) inherits midonet::params {
 
-  include ::midonet::params
-
-  anchor { '::midonet::midonet_agent::begin': } ->
+  anchor { 'midonet::midonet_agent::begin': } ->
   class { '::midonet::midonet_agent::install': } ->
   class { '::midonet::midonet_agent::run':
     zk_servers => $zk_servers,
     cs_seeds   => $cassandra_seeds,
-    require    => [Class['::midonet::cassandra'], Class['::midonet::zookeeper']]
+    require    => [Class['midonet::cassandra'], Class['midonet::zookeeper']]
   } ->
-  anchor { '::midonet::midonet_agent::end': }
+  anchor { 'midonet::midonet_agent::end': }
 
 }
 

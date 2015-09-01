@@ -113,9 +113,7 @@ class midonet::cassandra (
   $conf_dir           = $midonet::params::conf_dir,
   $pid_dir            = $midonet::params::pid_dir,
   $service_path       = $midonet::params::service_path,
-) {
-
-  include ::midonet::params
+) inherits midonet::params {
 
   class { '::cassandra':
     seeds              => $seeds,

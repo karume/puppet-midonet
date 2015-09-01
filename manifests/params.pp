@@ -101,7 +101,11 @@ class midonet::params {
     # MidoNet ZooKeeper config
     # ::midonet::zookeeper
     $server_id = '1'
-    $client_ip = $::ipaddress
+    $client_ip = "$::ipaddress"
+    $servers = [{
+      'id'   => '1',
+      'host' => 'localhost',
+    },]
 
     # MidoNet API config
     # ::midonet::midonet_api

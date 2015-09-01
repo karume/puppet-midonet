@@ -24,13 +24,11 @@
 #
 class midonet::midonet_api::install {
 
-#  require midonet::repository
   require midonet::midonet_api::augeas
 
   if ! defined(Class['java']) {
     class { 'java':
       distribution => 'jre',
-#     require      => Exec['update-midonet-repos']
     }
   }
 

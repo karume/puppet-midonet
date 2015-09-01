@@ -93,10 +93,10 @@
 #
 
 class midonet::zookeeper(
-  $servers = $midonet::params::zk_servers,
+  $servers   = $midonet::params::servers,
   $server_id = $midonet::params::server_id,
   $client_ip = $midonet::params::client_ip,
-) {
+) inherits midonet::params {
 
   class { '::zookeeper':
     servers   => zookeeper_servers($servers),

@@ -4,9 +4,7 @@
 
 class midonet::midonet_api::augeas (
   $augeas_packages = $midonet::params::augeas_packages
-) {
-
-  include ::midonet::params
+) inherits midonet::params {
 
   package { 'augeas-packages':
     ensure => present,

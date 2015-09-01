@@ -42,7 +42,7 @@
 #
 class midonet {
 
-  anchor { '::midonet::begin': } ->
+  anchor { 'midonet::begin': } ->
   # Configure repositories
   class { '::midonet::repository': } ->
   # Add zookeeper
@@ -54,7 +54,7 @@ class midonet {
   # Add midonet-api
   class { '::midonet::midonet_api': } ->
   # Add midonet-cli
-  class { '::midonet::midonet_cli': }
+  class { '::midonet::midonet_cli': } ->
 
 # TODO(carmela): This workaround has been added in order to be able to handle
 # dependencies on the custom providers. Currently there's no official faraday
@@ -90,6 +90,6 @@ class midonet {
       require         => Class['midonet::midonet_agent']
     }
 
-  anchor { '::midonet::end': }
+  anchor { 'midonet::end': }
 }
 

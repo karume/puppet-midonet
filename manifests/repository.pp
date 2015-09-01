@@ -89,9 +89,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-class midonet::repository {
-
-  include midonet::params
+class midonet::repository (
+) inherits midonet::params {
 
   case $::osfamily {
     'Debian': {

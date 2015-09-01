@@ -74,7 +74,7 @@ class midonet::neutron_plugin (
   $neutron_keystone_password = $midonet::params::neutron_keystone_password,
   $neutron_keystone_tenant   = $midonet::params::neutron_keystone_tenant,
   $sync_db                   = $midonet::params::sync_db,
-) {
+) inherits midonet::params {
 
   package { 'python-neutron-plugin-midonet':
     ensure  => present,

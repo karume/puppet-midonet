@@ -37,9 +37,7 @@ class midonet::midonet_cli(
   $api_ip       = $midonet::params::midonet_api_ip,
   $api_port     = $midonet::params::midonet_api_port,
   $api_endpoint = $midonet::params::midonet_api_endpoint,
-) {
-
-  include midonet::params
+) inherits midonet::params {
 
   package { 'python-midonetclient':
     ensure  => present,
