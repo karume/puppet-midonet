@@ -23,11 +23,10 @@
 # limitations under the License.
 #
 class midonet::midonet_agent::run (
-  $zk_servers = $midonet::params::zk_servers,
-  $cs_seeds   = $midonet::params::cassandra_seeds,
-) {
-
-  include ::midonet::params
+  $zk_servers    = $midonet::params::zk_servers,
+  $cs_seeds      = $midonet::params::cassandra_seeds,
+  $cs_rep_factor = $midonet::params::cassandra_replication_factor,
+) inherits midonet::params {
 
   file { '/etc/midolman/midolman.conf':
     ensure  => present,
