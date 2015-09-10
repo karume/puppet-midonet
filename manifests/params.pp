@@ -109,6 +109,8 @@ class midonet::params {
 
     # MidoNet API config
     # ::midonet::midonet_api
+    $manage_app_server    = true
+    $install_java         = true
     $vtep                 = false
     $keystone_auth        = false
     $keystone_admin_token = undef # Must remain 'undef' if $keystone_auth = false
