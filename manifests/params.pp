@@ -97,6 +97,7 @@ class midonet::params {
       'ip'   => 'localhost',
       'port' => '2181',
     },]
+    $cassandra_replication_factor = '1'
 
     # MidoNet ZooKeeper config
     # ::midonet::zookeeper
