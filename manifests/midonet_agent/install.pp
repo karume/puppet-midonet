@@ -22,11 +22,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-class midonet::midonet_agent::install {
+class midonet::midonet_agent::install (
+  $install_java      = $midonet::params::install_java,
+) inherits midonet::params {
 
-  if ! defined(Class['java']) {
-    class { 'java':
-      distribution => 'jre',
+  if ($install_java == true) {
+    if ! defined(Class['java']) {
+      class { 'java':
+        distribution => 'jre',
+      }
     }
   }
 
