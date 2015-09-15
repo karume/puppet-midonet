@@ -31,18 +31,20 @@ class midonet::midonet_api::install (
 
   if ($manage_app_server == true) {
     if ($install_java == true) {
-      class { 'java':
-        distribution => 'jre',
-      } ->
+      if ! defined(Class['java']) {
+        class { 'java':
+          distribution => 'jre',
+        } ->
 
-      class { 'tomcat':
-        install_from_source => false,
-        require             => Exec['update-midonet-repos'],
-      }
-    } else {
-      class { 'tomcat':
-        install_from_source => false,
-        require             => Exec['update-midonet-repos'],
+        class { 'tomcat':
+          install_from_source => false,
+          require             => Exec['update-midonet-repos'],
+        }
+      } else {
+        class { 'tomcat':
+          install_from_source => false,
+          require             => Exec['update-midonet-repos'],
+        }
       }
     }
   }

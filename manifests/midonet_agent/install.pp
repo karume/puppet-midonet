@@ -27,19 +27,15 @@ class midonet::midonet_agent::install (
 ) inherits midonet::params {
 
   if ($install_java == true) {
-    $require = Class['java']
     if ! defined(Class['java']) {
       class { 'java':
         distribution => 'jre',
       }
     }
-  } else {
-    $require = undef
   }
 
   package { 'midolman':
     ensure  => present,
-    require => $require,
   }
 
 }
