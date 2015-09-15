@@ -38,12 +38,10 @@ class midonet::midonet_api::install (
 
         class { 'tomcat':
           install_from_source => false,
-          require             => Exec['update-midonet-repos'],
         }
       } else {
         class { 'tomcat':
           install_from_source => false,
-          require             => Exec['update-midonet-repos'],
         }
       }
     }
