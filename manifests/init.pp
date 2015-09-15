@@ -54,7 +54,7 @@ class midonet {
   # Add midonet-api
   class { '::midonet::midonet_api': } ->
   # Add midonet-cli
-  class { '::midonet::midonet_cli': } ->
+  class { '::midonet::midonet_cli': }
 
 # TODO(carmela): This workaround has been added in order to be able to handle
 # dependencies on the custom providers. Currently there's no official faraday
@@ -76,7 +76,7 @@ class midonet {
         package { 'faraday':
           ensure   => present,
           provider => gem,
-          before   => Midonet_host_registry[$::fqdn]
+          before   => Midonet_host_registry[$::hostname]
         }
       }
     }
