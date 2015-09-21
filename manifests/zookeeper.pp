@@ -45,14 +45,14 @@
 #
 # ... on Node3
 #
-#     class {'::midonet::zookeeper':
-#         servers   =>  [{'id'   => 1,
-#                         'host' => 'node_1'},
-#                        {'id'   => 2,
-#                         'host' => 'node_2'},
-#                        {'id'   => 3,
-#                         'host' => 'node_3'}],
-#         server_id => 3}
+#   class { '::midonet::zookeeper':
+#     servers   =>  [{'id'   => 1,
+#                     'host' => 'node_1'},
+#                    {'id'   => 2,
+#                     'host' => 'node_2'},
+#                    {'id'   => 3,
+#                     'host' => 'node_3'}],
+#     server_id => 3}
 #
 # defining the same servers for each puppet node, but using a different
 # server_id for each one. NOTE: node_X can be hostnames or IP addresses.
@@ -91,20 +91,43 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 class midonet::zookeeper(
-  $servers   = $midonet::params::servers,
-  $server_id = $midonet::params::server_id,
-  $client_ip = $midonet::params::client_ip,
+  $servers              = $midonet::params::servers,
+  $server_id            = $midonet::params::server_id,
+  $client_ip            = $midonet::params::client_ip,
+  $repo                 = $midonet::params::zk_repo,
+  $packages             = $midonet::params::zk_packages,
+  $service_name         = $midonet::params::zk_service_name,
+  $initialize_datastore = $midonet::params::initialize_datastore,
 ) inherits midonet::params {
 
-  class { '::zookeeper':
-    servers   => zookeeper_servers($servers),
-    id        => $server_id,
-    cfg_dir   => '/etc/zookeeper',
-    client_ip => $client_ip
+  case $::osfamily {
+    'Debian': {
+      class { '::zookeeper':
+        servers   => zookeeper_servers($servers),
+        id        => $server_id,
+        cfg_dir   => '/etc/zookeeper',
+        client_ip => $client_ip
+      }
+    }
+
+    'RedHat': {
+      class { '::zookeeper':
+        repo                 => $repo,
+        packages             => $packages,
+        service_name         => $service_name,
+        initialize_datastore => $initialize_datastore,
+        servers              => zookeeper_servers($servers),
+        id                   => $server_id,
+        cfg_dir              => '/etc/zookeeper',
+        client_ip            => $client_ip
+      }
+    }
+
+    default: {
+      fail("Unsupported platform: midonet-${module_name} only supports RedHat-like and Debian-like OS")
+    }
   }
 
 }
-
 

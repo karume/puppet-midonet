@@ -22,14 +22,15 @@
 # This is a quite naive deployment, just for demo purposes. A more realistic one
 # would be:
 #
-#    class {'midonet::midonet_agent':
-#        zk_servers              =>  [{'ip'   => 'host1',
-#                                      'port' => '2183'},
-#                                     {'ip'   => 'host2'}],
-#        cassandra_seeds         =>  ['host1', 'host2', 'host3']
-#    }
+#  class { 'midonet::midonet_agent':
+#    zk_servers      =>  [ { 'ip'   => 'host1',
+#                            'port' => '2183'},
+#                          { 'ip'   => 'host2'} ],
+#    cassandra_seeds =>  [ 'host1', 'host2', 'host3' ]
+#  }
 #
-# Please note that Zookeeper port is not mandatory and defaulted to 2181
+# Please note that Zookeeper port is not mandatory and its value has been
+# defaulted to 2181
 #
 # You can alternatively use the Hiera.yaml style:
 #

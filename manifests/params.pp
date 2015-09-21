@@ -42,6 +42,12 @@ class midonet::params {
       $pid_dir            = '/var/run/cassandra'
       $service_path       = '/sbin'
 
+      # ZooKeeper config for $::osfamily == 'RedHat'
+      # ::midonet::zookeeper
+      $repo                 = 'cloudera'
+      $packages             = [ 'zookeeper', 'zookeeper-server' ]
+      $service_name         = 'zookeeper-server'
+      $initialize_datastore = true
     }
 
     'Debian': {

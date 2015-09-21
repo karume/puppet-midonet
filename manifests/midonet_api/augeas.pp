@@ -6,9 +6,8 @@ class midonet::midonet_api::augeas (
   $augeas_packages = $midonet::params::augeas_packages
 ) inherits midonet::params {
 
-  package { 'augeas-packages':
+  package { $augeas_packages:
     ensure => present,
-    name   => $augeas_packages,
   }
 
 }

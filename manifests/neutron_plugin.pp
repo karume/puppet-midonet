@@ -13,13 +13,13 @@
 #   IP address of the midonet api service
 # [*midonet_api_port*]
 #   port address of the midonet api service
-# [*keystone_username*]
+# [*neutron_keystone_username*]
 #   Username from which midonet api will authenticate against Keystone (use
 #   neutron service username)
-# [*keystone_password*]
+# [*neutron_keystone_password*]
 #   Password from which midonet api will authenticate against Keystone (use
 #   neutron service password)
-# [*keystone_tenant*]
+# [*neutron_keystone_tenant*]
 #   Tenant from which midonet api will authenticate against Keystone (use
 #   neutron service tenant)
 # [*sync_db*]
@@ -30,21 +30,21 @@
 #
 # An example call would be:
 #
-#     class {'midonet::neutron_plugin':
-#         midonet_api_ip    => '23.123.5.32',
-#         midonet_api_port  => '8080',
-#         keystone_username => 'neutron',
-#         keystone_password => '32kjaxT0k3na',
-#         keystone_tenant   => 'services',
-#         sync_db           => true
-#     }
+#   class { 'midonet::neutron_plugin':
+#     midonet_api_ip    => '23.123.5.32',
+#     midonet_api_port  => '8080',
+#     keystone_username => 'neutron',
+#     keystone_password => '32kjaxT0k3na',
+#     keystone_tenant   => 'services',
+#     sync_db           => true
+#   }
 #
 # You can alternatively use the Hiera's yaml style:
 #     midonet::neutron_plugin::midonet_api_ip: '23.213.5.32'
-#     midonet::neutron_plugin::port: '8080'
-#     midonet::neutron_plugin::keystone_username: 'neutron'
-#     midonet::neutron_plugin::keystone_password: '32.kjaxT0k3na'
-#     midonet::neutron_plugin::keystone_tenant: 'services'
+#     midonet::neutron_plugin::midonet_api_port: '8080'
+#     midonet::neutron_plugin::neutron_keystone_username: 'neutron'
+#     midonet::neutron_plugin::neutron_keystone_password: '32.kjaxT0k3na'
+#     midonet::neutron_plugin::neutron_keystone_tenant: 'services'
 #     midonet::neutron_plugin::sync_db: true
 #
 # === Authors
