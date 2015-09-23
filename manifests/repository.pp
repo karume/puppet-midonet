@@ -90,38 +90,38 @@
 # limitations under the License.
 #
 class midonet::repository (
-  $midonet_repo            = $midonet::params::midonet_repo,
+  $midonet_key             = $midonet::params::midonet_key,
+  $midonet_key_url         = $midonet::params::midonet_key_url,
   $midonet_openstack_repo  = $midonet::params::midonet_openstack_repo,
+  $midonet_repo            = $midonet::params::midonet_repo,
   $midonet_thirdparty_repo = $midonet::params::midonet_thirdparty_repo,
   $midonet_stage           = $midonet::params::midonet_stage,
-  $midonet_key_url         = $midonet::params::midonet_key_url,
-  $midonet_key             = $midonet::params::midonet_key,
   $openstack_release       = $midonet::params::openstack_release,
 ) inherits midonet::params {
 
   case $::osfamily {
     'Debian': {
       class {'midonet::repository::ubuntu':
-        midonet_repo            => $midonet::params::midonet_repo,
-        midonet_openstack_repo  => $midonet::params::midonet_openstack_repo,
-        midonet_thirdparty_repo => $midonet::params::midonet_thirdparty_repo,
-        midonet_stage           => $midonet::params::midonet_stage,
-        midonet_key_url         => $midonet::params::midonet_key_url,
-        midonet_key             => $midonet::params::midonet_key,
-        openstack_release       => $midonet::params::openstack_release
+        midonet_key             => $midonet_key,
+        midonet_key_url         => $midonet_key_url,
+        midonet_openstack_repo  => $midonet_openstack_repo,
+        midonet_repo            => $midonet_repo,
+        midonet_stage           => $midonet_stage,
+        midonet_thirdparty_repo => $midonet_thirdparty_repo,
+        openstack_release       => $openstack_release
       }
     }
 
     'RedHat': {
       class {'midonet::repository::centos':
-        midonet_repo            => $midonet::params::midonet_repo,
-        midonet_openstack_repo  => $midonet::params::midonet_openstack_repo,
-        midonet_thirdparty_repo => $midonet::params::midonet_thirdparty_repo,
-        midonet_stage           => $midonet::params::midonet_stage,
-        midonet_key_url         => $midonet::params::midonet_key_url,
-        manage_distro_repo      => $midonet::params::manage_distro_repo,
-        manage_epel_repo        => $midonet::params::manage_epel_repo,
-        openstack_release       => $midonet::params::openstack_release
+        manage_distro_repo      => $manage_distro_repo,
+        manage_epel_repo        => $manage_epel_repo,
+        midonet_key_url         => $midonet_key_url,
+        midonet_openstack_repo  => $midonet_openstack_repo,
+        midonet_repo            => $midonet_repo,
+        midonet_stage           => $midonet_stage,
+        midonet_thirdparty_repo => $midonet_thirdparty_repo,
+        openstack_release       => $openstack_release
       }
     }
 
