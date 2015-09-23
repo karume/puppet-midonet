@@ -90,6 +90,13 @@
 # limitations under the License.
 #
 class midonet::repository (
+  $midonet_repo            = $midonet::params::midonet_repo,
+  $midonet_openstack_repo  = $midonet::params::midonet_openstack_repo,
+  $midonet_thirdparty_repo = $midonet::params::midonet_thirdparty_repo,
+  $midonet_stage           = $midonet::params::midonet_stage,
+  $midonet_key_url         = $midonet::params::midonet_key_url,
+  $midonet_key             = $midonet::params::midonet_key,
+  $openstack_release       = $midonet::params::openstack_release,
 ) inherits midonet::params {
 
   case $::osfamily {
